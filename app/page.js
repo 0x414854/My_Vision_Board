@@ -1,95 +1,154 @@
+"use client";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 
+import Logo from "@/public/VISI/5.png";
+import TagWorldAnimation from "@/components/heroRound";
+
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={styles.homePage}>
+      <Image src={Logo} width={180} height={50} alt="test logo" />
+      <Link href="/login" className={styles.connectButton}>
+        <button>Connexion</button>
+      </Link>
+      <section className={styles.hero}>
+        <div className={styles.titleContainer}>
+          <motion.h1
+            className={styles.title}
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            Créer la vie que tu veux.
+          </motion.h1>
+          <div className={styles.subtitles}>
+            <motion.p
+              className={styles.subtitle}
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              Fixe tes objectifs.
+            </motion.p>
+            <motion.p
+              className={styles.subtitle}
+              initial={{ opacity: 0, y: -40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              Suis ton progrès.
+            </motion.p>
+            <motion.p
+              className={styles.subtitle}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              Reste fidèle à ton WHY.
+            </motion.p>
+          </div>
         </div>
-      </main>
+        <TagWorldAnimation />
+
+        <motion.div
+          className={styles.buttons}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Link href="/register" className={styles.button}>
+            Commencer maintenant
+          </Link>
+        </motion.div>
+      </section>
+
+      <section className={styles.features}>
+        <motion.div
+          className={styles.feature}
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.h3
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            🎯 Objectifs clairs
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            Définis tes buts à court, moyen et long terme.
+          </motion.p>
+        </motion.div>
+        <motion.div
+          className={styles.feature}
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.h3
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            📅 Suivi intelligent
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            Visualise tes progrès jour après jour.
+          </motion.p>
+        </motion.div>
+        <motion.div
+          className={styles.feature}
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.h3
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            💭 Ton WHY
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            Reste aligné avec ce qui compte vraiment pour toi.
+          </motion.p>
+        </motion.div>
+      </section>
+
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <p>✨ VisionBoard — transforme tes intentions en actions.</p>
       </footer>
-    </div>
+    </main>
   );
 }
