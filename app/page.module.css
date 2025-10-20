@@ -1,167 +1,335 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+.homePage {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+  width: 100%;
+  background: var(--white);
 }
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+.connectButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--title-gradient);
+  background-size: 800% 800%; /* pour l'animation fluide */
+  animation: gradientAnimation 10s ease infinite, slideLeft 0.8s ease;
   cursor: pointer;
+  z-index: 10;
+}
+.connectButton button {
+  border: none;
+  background: none;
+  font-size: var(--fs-1);
+  color: var(--white);
+  cursor: pointer;
+}
+.hero {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  width: 95%;
+  height: 85vh;
+  gap: 20px;
+  margin: 80px auto 40px auto;
+  /* background: red; */
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  width: 95%;
+  text-align: center;
+  gap: 10px;
 }
+.title {
+  font-size: var(--fs-15);
+  background: var(--title-gradient);
+  background-size: 800% 800%; /* pour l'animation fluide */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+  /* Animation */
+  animation: gradientAnimation 10s ease infinite;
 }
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
-}
-
-.footer {
-  grid-row-start: 3;
+.subtitles {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  width: 100%;
+  /* background: red; */
+  gap: 10px;
+}
+.subtitle {
+  text-align: start;
+  font-size: var(--fs-13);
+  color: var(--black);
+}
+.subtitle:nth-child(2) {
+  text-align: center;
+}
+.subtitle:nth-child(3) {
+  text-align: end;
 }
 
-.footer a {
+.button {
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--title-gradient);
+  padding: 10px;
+  background-size: 800% 800%; /* pour l'animation fluide */
+  animation: gradientAnimation 10s ease infinite;
+  cursor: pointer;
+}
+.button button {
+  border: none;
+  background: none;
+  font-size: var(--fs-1);
+  color: var(--white);
+}
+
+.features {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 0 auto 20px auto;
+  gap: 20px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background: var(--title-gradient);
+  background-size: 800% 800%; /* pour l'animation fluide */
+  animation: gradientAnimation 10s ease infinite;
+}
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  /* border: 1px solid black; */
+  width: 90%;
+  min-height: 200px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  gap: 20px;
+  color: var(--black);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.437);
+}
+.feature h3 {
+  font-size: var(--fs-13);
+}
+.feature p {
+  font-size: var(--fs-1);
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  /* background: red; */
+}
+.footer p {
+  font-size: var(--fs-1);
+  text-align: center;
+  padding: 10px;
+  color: var(--black);
+}
+@media (min-width: 360px) {
+  .hero {
+    height: 76vh;
+  }
+  .connectButton button,
+  .button,
+  .feature p,
+  .footer p {
+    font-size: var(--fs-12);
+  }
+  .title {
+    font-size: var(--fs-17);
+  }
+  .subtitle {
+    font-size: var(--fs-145);
+  }
+  .feature h3 {
+    font-size: var(--fs-125);
+  }
+  .buttons {
+    margin: 40px;
+  }
 }
 
-.footer img {
-  flex-shrink: 0;
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+@media (min-width: 375px) {
+  .hero {
+    height: 93vh;
   }
 }
+@media (min-width: 384px) {
+  .hero {
+    height: 73vh;
+  }
+}
+@media (min-width: 390px) {
+  .hero {
+    height: 74vh;
+  }
+}
+@media (min-width: 393px) {
+  .hero {
+    height: 82vh;
+  }
+}
+@media (min-width: 414px) {
+  .hero {
+    height: 70vh;
+  }
+}
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+@media (min-width: 574px) {
+  .hero {
+    height: 93vh;
+  }
+  .connectButton button,
+  .button,
+  .feature p,
+  .footer p {
+    font-size: var(--fs-12);
+  }
+  .title {
+    font-size: var(--fs-17);
   }
 
-  .main {
-    align-items: center;
+  .feature h3 {
+    font-size: var(--fs-125);
   }
+}
 
-  .main ol {
-    text-align: center;
+@media (min-width: 768px) {
+  .hero {
+    height: 79vh;
+    gap: 30px;
   }
-
-  .ctas {
-    flex-direction: column;
+  .titleContainer {
+    width: 75%;
+    gap: 20px;
   }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .title {
+    font-size: var(--fs-19);
   }
-
-  a.secondary {
-    min-width: auto;
+  .subtitle {
+    font-size: var(--fs-16);
   }
-
-  .footer {
+  .features {
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
   }
+  .feature {
+    width: 48%;
+  }
+}
+@media (min-width: 820px) {
+  .hero {
+    height: 68vh;
+  }
+}
+@media (min-width: 912px) {
+  .hero {
+    height: 40vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .titleContainer {
+    width: 48%;
+  }
+  .subtitle:nth-child(2),
+  .subtitle:nth-child(3) {
+    text-align: start;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+  .button {
+    display: flex;
+    width: 28%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .feature {
+    width: 31%;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (min-width: 1024px) {
+  .hero {
+    height: 41vh;
+  }
+  .connectButton button,
+  .button,
+  .feature p,
+  .footer p {
+    font-size: var(--fs-13);
+  }
+  .title {
+    font-size: var(--fs-21);
+  }
+  .subtitle {
+    font-size: var(--fs-18);
+  }
+  .feature h3 {
+    font-size: var(--fs-145);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero {
+    height: 87vh;
+    margin: 100px auto 40px auto;
+  }
+  .connectButton button,
+  .button,
+  .feature p,
+  .footer p {
+    font-size: var(--fs-145);
+  }
+  .title {
+    font-size: var(--fs-24);
+  }
+  .subtitle {
+    font-size: var(--fs-2);
+  }
+  .feature h3 {
+    font-size: var(--fs-16);
+  }
+  /* .button {
+    margin: 20px auto 40px auto;
+  } */
+}
+/* KEY FRAMES */
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
