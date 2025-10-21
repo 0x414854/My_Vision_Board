@@ -65,7 +65,7 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <Link href="/register" className={styles.button}>
+          <Link href="/login" className={styles.button}>
             Commencer maintenant
           </Link>
         </motion.div>

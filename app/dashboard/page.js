@@ -10,6 +10,7 @@ import ModalQuote from "@/components/modal/modalQuote";
 import ModalGoals from "@/components/modal/modalGoals";
 import WeeklyGoalsChart from "@/components/charts/weeklyCharts";
 import AllGoalsChart from "@/components/charts/allCharts";
+import Copyright from "@/components/footer/copyright";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -277,36 +278,6 @@ export default function DashboardPage() {
         </ul>
       </section>
 
-      <section className={styles.statsSection}>
-        <div className={styles.stats}>
-          <div
-            className={`${styles.stat} ${
-              activeChart === "weekly" ? styles.activeStat : ""
-            }`}
-            onClick={() => setActiveChart("weekly")}
-          >
-            <h3>🎯 Objectifs réalisés aujourd’hui</h3>
-            <p>{dailyCount}</p>
-          </div>
-          <div
-            className={`${styles.stat} ${
-              activeChart === "all" ? styles.activeStat : ""
-            }`}
-            onClick={() => setActiveChart("all")}
-          >
-            <h3>🎯 Tout les objectifs réalisés</h3>
-            <p>{allCount}</p>
-          </div>
-        </div>
-
-        {/* Chart dynamique */}
-        {activeChart === "weekly" ? (
-          <WeeklyGoalsChart completedGoals={completedGoals} type="weekly" />
-        ) : (
-          <AllGoalsChart completedGoals={completedGoals} type="all" />
-        )}
-      </section>
-
       <section className={styles.goalsSection}>
         <h2>🗂 Tes objectifs</h2>
         <div className={styles.newGoal}>
@@ -375,6 +346,41 @@ export default function DashboardPage() {
           ))}
         </div>
       </section>
+      <section className={styles.statsSection}>
+        <div className={styles.stats}>
+          <div
+            className={`${styles.stat} ${
+              activeChart === "weekly" && completedGoals.length > 0
+                ? styles.activeStat
+                : ""
+            }`}
+            onClick={() => setActiveChart("weekly")}
+          >
+            <h3>🎯 Objectifs réalisés aujourd’hui</h3>
+            <p>{dailyCount}</p>
+          </div>
+          <div
+            className={`${styles.stat} ${
+              activeChart === "all" && completedGoals.length > 0
+                ? styles.activeStat
+                : ""
+            }`}
+            onClick={() => setActiveChart("all")}
+          >
+            <h3>🎯 Tout les objectifs réalisés</h3>
+            <p>{allCount}</p>
+          </div>
+        </div>
+
+        {/* Chart dynamique */}
+        {completedGoals.length > 0 &&
+          (activeChart === "weekly" ? (
+            <WeeklyGoalsChart completedGoals={completedGoals} type="weekly" />
+          ) : (
+            <AllGoalsChart completedGoals={completedGoals} type="all" />
+          ))}
+      </section>
+
       <section
         className={
           completedGoals.length === 0
@@ -501,6 +507,7 @@ export default function DashboardPage() {
           // </div>
         )}
       </section>
+      <Copyright />
     </section>
   );
 }

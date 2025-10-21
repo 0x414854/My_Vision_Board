@@ -14,8 +14,11 @@
 - ✅ Pour les courbes des objectfis (graphique) ajouter 1 couleur unique pour chaque terme (court (vert), moyen (bleu), long(rouge)), et dans le graphique afficher une courbe / terme => dans ce style la (https://www.piloter.org/excel/kpi-excel/courbes-aires.htm)
 - ✅ ajouter une phrase (home) => compose ton vision board a ton image pour creer la vie que tu veux (pour te motiver chaque jour)
 
-- Faire en sorte que si aucun objectif realisé alors pas de courbe ?
+- ✅ Faire en sorte que si aucun objectif realisé alors pas de courbe ?
 - Faire la connexion avec Resend
 - Styliser mon dashboard
 - Faire style de 'register' comme 'login'
 - Ajuster taille texte dans chart => si possible ??
+- Ajouter dans why => laisser le cadre autour des why
+- ✅ Changer objectif section => juste apres le why
+- (bouton citations => sans animation juste couleur : --cta-color)
