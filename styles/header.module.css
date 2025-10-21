@@ -1,0 +1,88 @@
+.header {
+  display: flex;
+  width: 95%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+.home {
+  height: 50px;
+  cursor: pointer;
+}
+.home img {
+  border-radius: 10px;
+}
+.connectButton {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--title-gradient);
+  background-size: 800% 800%; /* pour l'animation fluide */
+  animation: gradientAnimation 10s ease infinite, slideLeft 0.8s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+.connectButton button {
+  border: none;
+  background: none;
+  font-size: var(--fs-1);
+  color: var(--white);
+  cursor: pointer;
+}
+
+@media (min-width: 360px) {
+  .connectButton button,
+  .button {
+    font-size: var(--fs-12);
+  }
+}
+
+@media (min-width: 574px) {
+  .header {
+    justify-content: space-around;
+    gap: 50px;
+  }
+}
+
+@media (min-width: 912px) {
+  .header {
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .connectButton button,
+  .button {
+    font-size: var(--fs-13);
+  }
+}
+
+@media (min-width: 1280px) {
+  .connectButton button,
+  .button {
+    font-size: var(--fs-145);
+  }
+}
+
+/* KEYFRAMES */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

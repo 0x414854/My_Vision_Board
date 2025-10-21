@@ -8,20 +8,29 @@ import styles from "@/styles/dashboard.module.css";
 
 import ModalQuote from "@/components/modal/modalQuote";
 import ModalGoals from "@/components/modal/modalGoals";
+import WeeklyGoalsChart from "@/components/charts/weeklyCharts";
+import AllGoalsChart from "@/components/charts/allCharts";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
 
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [goals, setGoals] = useState({ court: [], moyen: [], long: [] });
+  const [completedGoals, setCompletedGoals] = useState([]);
+
   const [newGoal, setNewGoal] = useState({ text: "", term: "court" });
   const [dailyCount, setDailyCount] = useState(0);
+  const [allCount, setAllCount] = useState(0);
+
   // 🟩 WHY
   const [whys, setWhys] = useState([]);
   const [newWhy, setNewWhy] = useState("");
   // MODAL GOALS
   const [showGoalModal, setShowGoalModal] = useState(false);
   const [goalJustCompleted, setGoalJustCompleted] = useState(null);
+
+  // "weekly" pour la semaine, "all" pour tout
+  const [activeChart, setActiveChart] = useState("weekly");
 
   useEffect(() => {
     // Vérifie la date d'aujourd'hui (au format AAAA-MM-JJ)
@@ -47,18 +56,30 @@ export default function DashboardPage() {
 
         const goalsData = await goalsRes.json();
         const grouped = { court: [], moyen: [], long: [] };
-        goalsData.forEach((g) => grouped[g.term].push(g));
-        setGoals(grouped);
-        const whyData = await whyRes.json();
-        setWhys(Array.isArray(whyData) ? whyData : []);
+        const completed = [];
 
-        const todayCount = goalsData.filter((g) => {
-          if (!g.completedAt) return false;
-          const completed = new Date(g.completedAt);
+        goalsData.forEach((g) => {
+          if (g.completedAt) {
+            completed.push(g); // objectif complété
+          } else {
+            grouped[g.term].push(g); // objectif actif
+          }
+        });
+
+        setGoals(grouped);
+        setCompletedGoals(completed);
+
+        const todayCount = completed.filter((g) => {
+          const completedDate = new Date(g.completedAt);
           const today = new Date();
-          return completed.toDateString() === today.toDateString();
+          return completedDate.toDateString() === today.toDateString();
         }).length;
         setDailyCount(todayCount);
+
+        setAllCount(completed.length);
+
+        const whyData = await whyRes.json();
+        setWhys(Array.isArray(whyData) ? whyData : []);
       } catch (err) {
         console.error("Erreur lors du chargement:", err);
       }
@@ -121,7 +142,11 @@ export default function DashboardPage() {
   };
 
   const toggleGoalDone = async (goal) => {
-    const updated = { ...goal, done: !goal.done };
+    const updated = {
+      ...goal,
+      done: !goal.done,
+      completedAt: !goal.done ? new Date().toISOString() : null,
+    };
 
     await fetch("/api/goals", {
       method: "PUT",
@@ -129,23 +154,42 @@ export default function DashboardPage() {
       body: JSON.stringify(updated),
     });
 
-    setGoals((prev) => ({
-      ...prev,
-      [goal.term]: prev[goal.term].map((g) =>
-        g.id === goal.id ? { ...g, done: updated.done } : g
-      ),
-    }));
-
     if (updated.done) {
-      setDailyCount((prev) => prev + 1);
+      // ✅ 1. Retirer de la liste principale
+      setGoals((prev) => ({
+        ...prev,
+        [goal.term]: prev[goal.term].filter((g) => g.id !== goal.id),
+      }));
 
-      // 🟡 Ouvre le modal de félicitations
+      // ✅ 2. Ajouter à la liste des accomplis
+      setCompletedGoals((prev) => [...prev, updated]);
+
+      // ✅ 3. Mettre à jour les compteurs
+      setDailyCount((prev) => prev + 1);
+      setAllCount((prev) => prev + 1);
+
+      // ✅ 4. Afficher le modal
       setGoalJustCompleted(goal);
       setShowGoalModal(true);
     } else {
+      // 🕐 Si on décoche → retour dans les actifs
+      setCompletedGoals((prev) => prev.filter((g) => g.id !== goal.id));
+      setGoals((prev) => ({
+        ...prev,
+        [goal.term]: [...prev[goal.term], updated],
+      }));
+
+      // Ajuster les compteurs
       setDailyCount((prev) => (prev > 0 ? prev - 1 : 0));
+      setAllCount((prev) => (prev > 0 ? prev - 1 : 0));
     }
   };
+
+  // const completedGrouped = {
+  //   court: completedGoals.filter((g) => g.term === "court"),
+  //   moyen: completedGoals.filter((g) => g.term === "moyen"),
+  //   long: completedGoals.filter((g) => g.term === "long"),
+  // };
 
   // 🔹 UI
   if (!session?.user) {
@@ -235,9 +279,32 @@ export default function DashboardPage() {
 
       <section className={styles.statsSection}>
         <div className={styles.stats}>
-          <h3>🎯 Objectifs réalisés aujourd’hui</h3>
-          <p>{dailyCount}</p>
+          <div
+            className={`${styles.stat} ${
+              activeChart === "weekly" ? styles.activeStat : ""
+            }`}
+            onClick={() => setActiveChart("weekly")}
+          >
+            <h3>🎯 Objectifs réalisés aujourd’hui</h3>
+            <p>{dailyCount}</p>
+          </div>
+          <div
+            className={`${styles.stat} ${
+              activeChart === "all" ? styles.activeStat : ""
+            }`}
+            onClick={() => setActiveChart("all")}
+          >
+            <h3>🎯 Tout les objectifs réalisés</h3>
+            <p>{allCount}</p>
+          </div>
         </div>
+
+        {/* Chart dynamique */}
+        {activeChart === "weekly" ? (
+          <WeeklyGoalsChart completedGoals={completedGoals} type="weekly" />
+        ) : (
+          <AllGoalsChart completedGoals={completedGoals} type="all" />
+        )}
       </section>
 
       <section className={styles.goalsSection}>
@@ -308,8 +375,131 @@ export default function DashboardPage() {
           ))}
         </div>
       </section>
-      <section className={styles.achievedGoalsSection}>
+      <section
+        className={
+          completedGoals.length === 0
+            ? styles.emptyAchievedGoalSection
+            : styles.achievedGoalsSection
+        }
+      >
         <h2>✅ Tes objectifs accomplis</h2>
+
+        <ul className={styles.labels}>
+          <li className={styles.label}>
+            <span>Court terme</span>
+            <div></div>
+          </li>
+          <li className={styles.label}>
+            <span>Moyen terme</span>
+            <div></div>
+          </li>
+          <li className={styles.label}>
+            <span>Long terme</span>
+            <div></div>
+          </li>
+        </ul>
+
+        {completedGoals.length === 0 ? (
+          <p className={styles.emptyGoals}>
+            Aucun objectif complété pour le moment.
+          </p>
+        ) : (
+          <div className={styles.completedContainer}>
+            {completedGoals.length === 0 ? (
+              <p className={styles.emptyCategory}>
+                Aucun objectif complété pour le moment.
+              </p>
+            ) : (
+              <ul className={styles.achievedList}>
+                {completedGoals
+                  .sort(
+                    (a, b) => new Date(b.completedAt) - new Date(a.completedAt)
+                  )
+                  .map((g) => (
+                    <li
+                      key={g.id}
+                      className={
+                        g.term === "court"
+                          ? styles.shortAchievedItem
+                          : g.term === "moyen"
+                          ? styles.mediumAchievedItem
+                          : styles.longAchievedItem
+                      }
+                    >
+                      <span className={styles.goalLabel}>{g.text}</span>
+                      <div>
+                        <span className={styles.goalTermTag}>
+                          {g.term === "court"
+                            ? "Court"
+                            : g.term === "moyen"
+                            ? "Moyen"
+                            : "Long"}
+                        </span>
+                        <span className={styles.achievedDate}>
+                          {new Date(g.completedAt).toLocaleDateString("fr-FR")}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </div>
+
+          // <div className={styles.completedContainer}>
+          //   {["court", "moyen", "long"].map((term) => (
+          //     <div key={term} className={styles.completedTerm}>
+          //       {/* <h3>
+          //         {term === "court"
+          //           ? "⏱ Court terme"
+          //           : term === "moyen"
+          //           ? "📆 Moyen terme"
+          //           : "🏔 Long terme"}
+          //       </h3> */}
+
+          //       {completedGrouped[term].length === 0 ? (
+          //         <p className={styles.emptyCategory}>Aucun objectif ici.</p>
+          //       ) : (
+          //         <ul className={styles.achievedList}>
+          //           {completedGrouped[term]
+          //             .sort(
+          //               (a, b) =>
+          //                 new Date(b.completedAt || 0) -
+          //                 new Date(a.completedAt || 0)
+          //             )
+          //             .map((g) => (
+          //               <li
+          //                 key={g.id}
+          //                 className={
+          //                   term === "court"
+          //                     ? styles.shortAchievedItem
+          //                     : term === "moyen"
+          //                     ? styles.mediumAchievedItem
+          //                     : styles.longAchievedItem
+          //                 }
+          //               >
+          //                 <span className={styles.goalLabel}>{g.text}</span>
+          //                 <div>
+          //                   <span className={styles.goalTermTag}>
+          //                     {term === "court"
+          //                       ? "Court"
+          //                       : term === "moyen"
+          //                       ? "Moyen"
+          //                       : "Long"}
+          //                   </span>
+          //                   <span className={styles.achievedDate}>
+          //                     {new Date(g.completedAt).toLocaleDateString(
+          //                       "fr-FR"
+          //                     )}
+          //                   </span>
+          //                 </div>
+          //               </li>
+          //             ))}
+          //         </ul>
+          //       )}
+          //     </div>
+          //   ))}
+          // </div>
+        )}
       </section>
     </section>
   );

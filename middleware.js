@@ -5,7 +5,8 @@ export async function middleware(req) {
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
-    cookieName: "__Secure-authjs.session-token",
+    cookieName: "authjs.session-token", // LOCAL
+    // cookieName: "__Secure-authjs.session-token", //PROD
   });
   console.log(token);
 

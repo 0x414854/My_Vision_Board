@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- ✅ Verifier domaine avec resend une fois finis
+- ✅Creer Logo
+- ✅ Creer header (logo + button de connexion)
+- ✅Creer section successed goal
+- ✅ Ajouter tout les goals realisé dans un section (successed goal) => chaque goal doit avoir date de reussite (completedAt), objectif (text), term (term => court, moyen, long)
+- ✅ Ajouter animation sur hero (homePage)
+- ✅ Creer un animation pour quand on check un goal => message de felicitation
+- ✅ Faire en sorte que mon QuoteModal s'affiche que 1 fois / jour apres la connexion, pas à chaque connexion === DONE?
+- ✅ Creer animation sur bouton ' Citation du jour' == DONE
+- ✅ Ajouter courbe (line) pour les objectifs realisé / jour sur les 7 derniers jours (adapté le delai de temps (7j - 15j - 30j)) => enregistrer dans la db
+- ✅ Ajouter une parti oû l'on voit tout les objectifs realisé depuis le debut (statsSection)
+- ✅ Creer un modal de de felicitation pour chaque goal realisé (apparation pour chaque goal checked)
+- Creer et ajouter un footer a chaque page => renvoie sur mon site (mon nom) => (✨ VisionBoard — transforme tes intentions en actions.)
+- ✅ Pour les courbes des objectfis (graphique) ajouter 1 couleur unique pour chaque terme (court (vert), moyen (bleu), long(rouge)), et dans le graphique afficher une courbe / terme => dans ce style la (https://www.piloter.org/excel/kpi-excel/courbes-aires.htm)
+- ✅ ajouter une phrase (home) => compose ton vision board a ton image pour creer la vie que tu veux (pour te motiver chaque jour)
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Faire en sorte que si aucun objectif realisé alors pas de courbe ?
+- Faire la connexion avec Resend
+- Styliser mon dashboard
+- Faire style de 'register' comme 'login'
+- Ajuster taille texte dans chart => si possible ??

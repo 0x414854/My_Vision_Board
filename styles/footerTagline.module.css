@@ -1,0 +1,27 @@
+.tagline {
+  text-align: center;
+  font-size: var(--fs-11);
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+@media (min-width: 574px) {
+  .tagline {
+    font-size: var(--fs-115);
+  }
+}
+@media (min-width: 768px) {
+  .tagline {
+    font-size: var(--fs-12);
+  }
+}
+@media (min-width: 1024px) {
+  .tagline {
+    font-size: var(--fs-125);
+  }
+}
+@media (min-width: 1280px) {
+  .tagline {
+    font-size: var(--fs-13);
+  }
+}

@@ -6,7 +6,7 @@
   min-height: 100vh;
   gap: 40px;
   background-size: 800% 800%; /* pour l'animation fluide */
-  animation: gradientAnimation 10s ease infinite;
+  /* animation: gradientAnimation 10s ease infinite; */
 }
 
 .header {
@@ -18,7 +18,8 @@
   gap: 20px;
   padding: 20px;
   border-radius: 20px;
-  border: 1px solid black;
+  box-shadow: var(--bs-bottom);
+  /* border: 1px solid black; */
   background: var(--white);
 }
 
@@ -38,7 +39,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: var(--fs-15);
 }
 
@@ -123,7 +124,8 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: var(--bs-bottom);
   border-radius: 20px;
   background: var(--white);
 }
@@ -172,14 +174,14 @@
   width: 30px;
   height: 30px;
   font-size: var(--fs-1);
-  background: var(--title-gradient);
+  background: var(--cta-color);
   color: var(--black);
   border: 1px solid transparent;
   border-radius: 20px;
 }
 .newWhy button:hover,
 .newWhy button:focus {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 /* .whySection textarea {
@@ -207,7 +209,7 @@
   border-radius: 10px;
 }
 .whyItem:hover {
-  box-shadow: 0 0 2px rgba(67, 67, 67, 0.533);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
   transform: translateY(-4px);
   transition: all 0.3s ease;
 }
@@ -229,16 +231,34 @@
   transition: opacity 0.3s ease;
 }
 .statsSection {
-  background: var(--white);
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  /* padding: 20px; */
+  /* border: 1px solid black; */
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 .stats {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+.stat {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--bs-bottom);
+  cursor: pointer;
+}
+.activeStat {
+  border: 2px solid black;
 }
 .stats h3 {
   font-size: var(--fs-12);
@@ -249,11 +269,13 @@
 .goalsSection {
   display: flex;
   flex-direction: column;
+  background: var(--white);
   padding: 20px;
   gap: 20px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: var(--bs-bottom);
+
   border-radius: 20px;
-  background: var(--white);
 }
 .goalsSection h2 {
   font-size: var(--fs-13);
@@ -295,7 +317,7 @@
   width: 40%;
   border: none;
   padding: 5px 10px;
-  background: var(--title-gradient);
+  background: var(--cta-color);
   color: var(--black);
   border-radius: 10px;
 }
@@ -388,16 +410,135 @@
   padding: 6px 0;
 }
 
-.goalDone {
+/* .goalDone {
   text-decoration: line-through;
   opacity: 0.6;
-}
+} */
 
 .quoteSection {
   background: #fff8dc;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
+}
+.emptyAchievedGoalSection {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--bs-bottom);
+  gap: 20px;
+  text-align: start;
+}
+.emptyAchievedGoalSection h2 {
+  font-size: var(--fs-13);
+}
+.emptyGoals {
+  text-align: center;
+}
+.emptyAchievedGoalSection .labels {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+.achievedGoalsSection {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--bs-bottom);
+  gap: 20px;
+}
+.achievedGoalsSection h2 {
+  font-size: var(--fs-13);
+}
+
+.achievedGoalSection .labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-1);
+}
+.label span {
+  width: 45%;
+}
+.label div {
+  width: 20%;
+  height: 1px;
+  background: #22c55e;
+}
+.label:nth-child(2) div {
+  background: #facc15;
+}
+.label:nth-child(3) div {
+  background: #3b82f6;
+}
+.completedTerm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.achievedList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+}
+.shortAchievedItem {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #22c55e;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+}
+.goalLabel {
+  text-align: center;
+  font-weight: bold;
+  font-size: var(--fs-1);
+}
+.goalTermTag,
+.achievedDate {
+  font-size: var(--fs-1);
+}
+.mediumAchievedItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #facc15;
+}
+.longAchievedItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #3b82f6;
+}
+.shortAchievedItem div,
+.mediumAchievedItem div,
+.longAchievedItem div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 @media (min-width: 384px) {
   .buttons {
@@ -443,6 +584,17 @@
   .whyItem button {
     font-size: var(--fs-105);
   }
+  .statsSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .stats {
+    flex-direction: row;
+    width: 100%;
+  }
+  .stat {
+    width: 48%;
+  }
   .stats h3 {
     font-size: var(--fs-125);
   }
@@ -470,8 +622,28 @@
   .goalActions button {
     font-size: var(--fs-105);
   }
+  .achievedGoalsSection h2,
+  .emptyAchievedGoalSection h2 {
+    font-size: var(--fs-145);
+  }
+  .achievedGoalsSection .labels {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .label {
+    width: 45%;
+    font-size: var(--fs-105);
+  }
+  .goalLabel,
+  .goalTermTag,
+  .achievedDate {
+    font-size: var(--fs-105);
+  }
 }
-
 @media (min-width: 768px) {
   .userInfo h1 {
     font-size: var(--fs-19);
@@ -542,7 +714,6 @@
   .newGoal div button {
     width: 40%;
   }
-
   .termRow h3 {
     font-size: var(--fs-135);
   }
@@ -550,11 +721,47 @@
   .goalActions button {
     font-size: var(--fs-11);
   }
+
+  .achievedGoalsSection h2,
+  .emptyAchievedGoalSection h2 {
+    font-size: var(--fs-16);
+  }
+  .label {
+    width: 45%;
+    font-size: var(--fs-11);
+  }
+  .goalLabel,
+  .goalTermTag,
+  .achievedDate {
+    font-size: var(--fs-11);
+  }
+  .shortAchievedItem,
+  .mediumAchievedItem,
+  .longAchievedItem {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .shortAchievedItem div,
+  .mediumAchievedItem div,
+  .longAchievedItem div {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 820px) {
   .userInfo {
     gap: 30px;
+  }
+  .label {
+    width: 32%;
+    gap: 10px;
+  }
+  .label div {
+    width: 30%;
   }
 }
 
@@ -654,6 +861,38 @@
   .goalActions {
     gap: 10px;
   }
+
+  .achievedGoalsSection h2,
+  .emptyAchievedGoalSection h2 {
+    font-size: var(--fs-18);
+  }
+  .label {
+    font-size: var(--fs-115);
+  }
+  .goalLabel,
+  .goalTermTag,
+  .achievedDate {
+    font-size: var(--fs-115);
+  }
+  .achievedList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .shortAchievedItem,
+  .mediumAchievedItem,
+  .longAchievedItem {
+    flex-direction: column;
+    width: 48%;
+  }
+  .shortAchievedItem div,
+  .mediumAchievedItem div,
+  .longAchievedItem div {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 @media (min-width: 1280px) {
   .userInfo h1 {
@@ -752,6 +991,24 @@
   }
   .goalActions {
     gap: 10px;
+  }
+
+  .achievedGoalsSection h2,
+  .emptyAchievedGoalSection h2 {
+    font-size: var(--fs-2);
+  }
+  .label {
+    font-size: var(--fs-12);
+  }
+  .goalLabel,
+  .goalTermTag,
+  .achievedDate {
+    font-size: var(--fs-12);
+  }
+  .shortAchievedItem,
+  .mediumAchievedItem,
+  .longAchievedItem {
+    width: 32%;
   }
 }
 /* KEYFRAMES */

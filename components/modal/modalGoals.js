@@ -29,7 +29,14 @@ export default function ModalGoals({ onClose, goalText }) {
         this.x = x;
         this.y = y;
         this.particles = [];
-        const colors = ["#ffcc00", "#00e1ff", "#ff4fd8", "#9cff00", "#ff6a00"];
+        const colors = [
+          "#FFB703", // orange doré
+          "#FFD60A", // or lumineux
+          "#FFFFFF", // blanc pur
+          "#9CFFFA", // bleu glacier
+          "#FFA3A3", // rose pâle chaud
+        ];
+
         const color = colors[Math.floor(Math.random() * colors.length)];
         for (let i = 0; i < 50; i++) {
           this.particles.push({

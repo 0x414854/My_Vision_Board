@@ -2,19 +2,19 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./page.module.css";
-
-import Logo from "@/public/VISI/5.png";
 import TagWorldAnimation from "@/components/heroRound";
+import Header from "@/components/header";
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
   return (
     <main className={styles.homePage}>
-      <Image src={Logo} width={180} height={50} alt="test logo" />
+      <Header />
+      {/* <Image src={Logo} width={180} height={50} alt="test logo" />
       <Link href="/login" className={styles.connectButton}>
         <button>Connexion</button>
-      </Link>
+      </Link> */}
       <section className={styles.hero}>
         <div className={styles.titleContainer}>
           <motion.h1
@@ -24,7 +24,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            Créer la vie que tu veux.
+            Composes ton vision board à ton image pour créer la vie que tu veux.
           </motion.h1>
           <div className={styles.subtitles}>
             <motion.p
@@ -52,7 +52,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true, amount: 0.2 }}
             >
-              Reste fidèle à ton WHY.
+              Reste focus sur ton WHY.
             </motion.p>
           </div>
         </div>
@@ -146,9 +146,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <footer className={styles.footer}>
-        <p>✨ VisionBoard — transforme tes intentions en actions.</p>
-      </footer>
+      <Footer />
     </main>
   );
 }

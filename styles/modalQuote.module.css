@@ -19,7 +19,7 @@
   padding: 2rem;
   border-radius: 12px;
   position: relative;
-  max-width: 500px;
+  max-width: 400px;
   width: 90%;
   text-align: center;
   gap: 15px;
@@ -35,23 +35,52 @@
   right: 10px;
   background: transparent;
   border: none;
-  font-size: 1rem;
+  font-size: var(--fs-11);
   cursor: pointer;
   color: var(--black);
   font-weight: bold;
 }
 
 .content {
-  font-size: var(--fs-1);
+  font-size: var(--fs-11);
 }
 
 .author {
-  font-size: var(--fs-1);
+  font-size: var(--fs-11);
   color: #555;
   text-align: end;
 }
 
-/* Animations */
+@media (min-width: 574px) {
+  .closeBtn,
+  .content,
+  .author {
+    font-size: var(--fs-12);
+  }
+}
+@media (min-width: 768px) {
+  .closeBtn,
+  .content,
+  .author {
+    font-size: var(--fs-13);
+  }
+}
+@media (min-width: 1024px) {
+  .closeBtn,
+  .content,
+  .author {
+    font-size: var(--fs-14);
+  }
+}
+@media (min-width: 1280px) {
+  .closeBtn,
+  .content,
+  .author {
+    font-size: var(--fs-15);
+  }
+}
+
+/* KEYFRAMES */
 @keyframes fadeInOverlay {
   0% {
     background: rgba(0, 0, 0, 0);

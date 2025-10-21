@@ -31,7 +31,9 @@ export default function Login() {
   return (
     <main className={styles.loginSection}>
       <div className={styles.loginContainer}>
-        <h1 className={styles.title}>Bienvenue sur VisionBoard</h1>
+        <h1 className={styles.title}>
+          Bienvenue sur <span className={styles.name}>MyVisionBoard</span>
+        </h1>
         <p className={styles.subtitle}>
           Connectez-vous pour suivre vos objectifs
         </p>

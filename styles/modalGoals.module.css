@@ -12,12 +12,12 @@
 
 .canvas {
   background: rgba(0, 0, 0, 0.6);
-
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
+  cursor: pointer;
 }
 
 .modal {
@@ -41,7 +41,7 @@
   border: none;
   background: transparent;
   color: #333;
-  font-size: 1.2rem;
+  font-size: var(--fs-11);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -50,22 +50,60 @@
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: var(--fs-18);
   color: #d4af37;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .message {
-  font-size: 1.2rem;
+  font-size: var(--fs-11);
   color: #444;
   margin-bottom: 0.5rem;
 }
 
 .sub {
-  font-size: 1rem;
+  font-size: var(--fs-11);
   color: #555;
   margin-top: 0.5rem;
+}
+
+@media (min-width: 574px) {
+  .closeBtn,
+  .message,
+  .sub {
+    font-size: var(--fs-12);
+  }
+}
+@media (min-width: 768px) {
+  .closeBtn,
+  .message,
+  .sub {
+    font-size: var(--fs-13);
+  }
+  .title {
+    font-size: var(--fs-2);
+  }
+}
+@media (min-width: 1024px) {
+  .closeBtn,
+  .message,
+  .sub {
+    font-size: var(--fs-14);
+  }
+  .title {
+    font-size: var(--fs-22);
+  }
+}
+@media (min-width: 1280px) {
+  .closeBtn,
+  .message,
+  .sub {
+    font-size: var(--fs-15);
+  }
+  .title {
+    font-size: var(--fs-24);
+  }
 }
 
 @keyframes popIn {
