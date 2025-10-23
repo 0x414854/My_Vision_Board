@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/dashboard.module.css";
 
+import PenIcon from "@/public/pen-2.png";
+
 import ModalQuote from "@/components/modal/modalQuote";
 import ModalGoals from "@/components/modal/modalGoals";
 import WeeklyGoalsChart from "@/components/charts/weeklyCharts";
@@ -14,6 +16,41 @@ import Copyright from "@/components/footer/copyright";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
+
+  const [displayName, setDisplayName] = useState("Le Rhino");
+  const [editingName, setEditingName] = useState(false);
+
+  useEffect(() => {
+    if (session?.user?.name) {
+      setDisplayName(session.user.name);
+    }
+  }, [session]);
+
+  const saveName = async () => {
+    if (!displayName.trim() || displayName === session.user.name) {
+      setEditingName(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/updateName", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: session.user.email, name: displayName }),
+      });
+
+      if (!res.ok) throw new Error("Erreur lors de la mise à jour");
+
+      // ⚡ Forcer la mise à jour de la session NextAuth
+      await fetch("/api/auth/session?update", { method: "GET" });
+
+      // Mettre à jour localement pour l'affichage immédiat
+      setEditingName(false);
+    } catch (err) {
+      console.error(err);
+      alert("Impossible de mettre à jour le nom");
+    }
+  };
 
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [goals, setGoals] = useState({ court: [], moyen: [], long: [] });
@@ -231,7 +268,27 @@ export default function DashboardPage() {
             />
           )}
           <h1>
-            Bienvenue, <span>{session.user.name || "Visionnaire"}</span>
+            Bienvenue,{" "}
+            {editingName ? (
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                onBlur={saveName}
+                onKeyDown={(e) => e.key === "Enter" && saveName()}
+                autoFocus
+              />
+            ) : (
+              <span onClick={() => setEditingName(true)}>
+                {displayName}{" "}
+                <Image
+                  src={PenIcon}
+                  width={16}
+                  height={16}
+                  alt="Pencil image"
+                />
+              </span>
+            )}
           </h1>
         </div>
         <div className={styles.buttons}>
@@ -242,7 +299,10 @@ export default function DashboardPage() {
           >
             Citation du jour
           </button>
-          <button onClick={() => signOut()} className={styles.logoutBtn}>
+          <button
+            onClick={() => signOut({ redirectTo: "/" })}
+            className={styles.logoutBtn}
+          >
             Déconnexion
           </button>
         </div>

@@ -19,10 +19,10 @@ export default function Copyright() {
         <span>All rights reserved</span>
       </motion.div>
       <motion.span
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {" "}
         Made with <Image

@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/styles/login.module.css";
 import { useRouter } from "next/navigation";
+
+import BackArrow from "@/public/backArrow.png";
 
 export default function Login() {
   const router = useRouter();
@@ -12,25 +15,35 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  async function handleCredentialsLogin(e) {
+  async function handleResendLogin(e) {
     e.preventDefault();
+    setError("");
 
-    const res = await signIn("credentials", {
-      redirect: false,
+    // ⛔️ ne pas mettre redirect:true, car sinon signIn gère tout et ton callbackUrl ne passe pas bien
+    const res = await signIn("resend", {
       email,
-      password,
+      callbackUrl: "/dashboard", // ✅ c’est ce qui sera utilisé dans le lien magique
+      redirect: false, // on désactive la redirection immédiate, car l’utilisateur doit cliquer sur le lien reçu
     });
 
-    if (res?.error) {
-      setError("Email ou mot de passe incorrect");
+    if (res?.ok || !res?.error) {
+      alert(
+        "✅ Un lien magique de connexion vient d’être envoyé à votre email !"
+      );
     } else {
-      router.push("/dashboard"); // redirection après login
+      setError("Erreur : impossible d’envoyer le lien de connexion.");
     }
   }
 
   return (
     <main className={styles.loginSection}>
       <div className={styles.loginContainer}>
+        <div className={styles.backHomeContainer}>
+          <Link href="/">
+            <Image src={BackArrow} width={20} height={20} />
+            <p>Back Home</p>
+          </Link>
+        </div>
         <h1 className={styles.title}>
           Bienvenue sur <span className={styles.name}>MyVisionBoard</span>
         </h1>
@@ -60,7 +73,7 @@ export default function Login() {
           <div className={styles.formContainer}>
             <form
               className={styles.credentialForm}
-              onSubmit={handleCredentialsLogin}
+              onSubmit={handleResendLogin}
             >
               <input
                 type="email"

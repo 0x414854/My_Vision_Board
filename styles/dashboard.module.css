@@ -42,6 +42,18 @@
   justify-content: start;
   font-size: var(--fs-15);
 }
+.userInfo h1 input {
+  font-size: var(--fs-15);
+  width: 80%;
+}
+.userInfo h1 span img {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.header:hover .userInfo h1 span img {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
 
 .buttons {
   display: flex;
@@ -578,6 +590,9 @@
   .userInfo h1 {
     font-size: var(--fs-17);
   }
+  .userInfo h1 input {
+    font-size: var(--fs-17);
+  }
   .buttons {
     width: 40%;
     flex-direction: column;
@@ -671,6 +686,9 @@
 }
 @media (min-width: 768px) {
   .userInfo h1 {
+    font-size: var(--fs-19);
+  }
+  .userInfo h1 input {
     font-size: var(--fs-19);
   }
   .buttons {
@@ -810,6 +828,15 @@
   .userInfo h1 {
     font-size: var(--fs-21);
   }
+  .userInfo h1 input {
+    font-size: var(--fs-21);
+  }
+  .userInfo h1 {
+    gap: 10px;
+  }
+  .userInfo h1 input {
+    width: 50%;
+  }
   .quoteButton {
     width: 50%;
     font-size: var(--fs-115);
@@ -927,6 +954,9 @@
 }
 @media (min-width: 1280px) {
   .userInfo h1 {
+    font-size: var(--fs-24);
+  }
+  .userInfo h1 input {
     font-size: var(--fs-24);
   }
   .quoteButton {

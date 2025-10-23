@@ -15,10 +15,14 @@
 - ✅ ajouter une phrase (home) => compose ton vision board a ton image pour creer la vie que tu veux (pour te motiver chaque jour)
 
 - ✅ Faire en sorte que si aucun objectif realisé alors pas de courbe ?
-- Faire la connexion avec Resend
+- ✅Faire la connexion avec Resend
 - Styliser mon dashboard
-- Faire style de 'register' comme 'login'
+- ✅ Faire style de 'register' comme 'login'
 - Ajuster taille texte dans chart => si possible ??
-- Ajouter dans why => laisser le cadre autour des why
+- ✅Ajouter dans why => laisser le cadre autour des why
 - ✅ Changer objectif section => juste apres le why
-- (bouton citations => sans animation juste couleur : --cta-color)
+- ✅(bouton citations => sans animation juste couleur : --cta-color)
+- Ajouter logo (github + google)
+- Ajouter animation sur element (register - )
+- Ajouter des Images ??
+- ✅ Ajouter fleches de retour en arriere dasn 'login'

@@ -19,6 +19,48 @@
   position: relative;
   gap: 10px;
 }
+.backHomeContainer {
+  display: flex;
+  flex-direction: row;
+  color: var(--black);
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: var(--bs-bottom); */
+  font-size: var(--fs-1);
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+.backHomeContainer a {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.backHomeContainer a:hover {
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+.backHomeContainer p {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.backHomeContainer p::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: var(--black);
+  bottom: 0;
+  left: 0;
+}
+.backHomeContainer a:hover p::after {
+  width: 100%;
+  transition: all 0.3s ease;
+}
 
 .title {
   font-size: var(--fs-15);
@@ -153,6 +195,11 @@
   transition: all 0.3s ease;
 }
 @media (min-width: 360px) {
+  .backHomeContainer {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+  }
   .separator::before {
     left: -0;
   }
@@ -206,6 +253,9 @@
     height: 80%;
     border-radius: 20px;
   }
+  .backHomeContainer {
+    font-size: var(--fs-105);
+  }
   .title {
     font-size: var(--fs-17);
   }
@@ -241,6 +291,13 @@
   .loginContainer {
     width: 90%;
     height: 80%;
+  }
+  .backHomeContainer {
+    font-size: var(--fs-11);
+  }
+  .backHomeContainer img {
+    width: 30px;
+    height: 30px;
   }
   .title {
     font-size: var(--fs-19);
@@ -294,6 +351,9 @@
   }
 }
 @media (min-width: 1024px) {
+  .backHomeContainer {
+    font-size: var(--fs-115);
+  }
   .title {
     font-size: var(--fs-21);
   }
@@ -320,7 +380,9 @@
   .loginContainer {
     height: 80%;
   }
-
+  .backHomeContainer {
+    font-size: var(--fs-12);
+  }
   .title {
     font-size: var(--fs-24);
   }
