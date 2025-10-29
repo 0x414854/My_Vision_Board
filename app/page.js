@@ -11,10 +11,6 @@ export default function Home() {
   return (
     <main className={styles.homePage}>
       <Header />
-      {/* <Image src={Logo} width={180} height={50} alt="test logo" />
-      <Link href="/login" className={styles.connectButton}>
-        <button>Connexion</button>
-      </Link> */}
       <section className={styles.hero}>
         <div className={styles.titleContainer}>
           <motion.h1

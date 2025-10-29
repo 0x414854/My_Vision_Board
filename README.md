@@ -23,6 +23,7 @@
 - ✅ Changer objectif section => juste apres le why
 - ✅(bouton citations => sans animation juste couleur : --cta-color)
 - Ajouter logo (github + google)
-- Ajouter animation sur element (register - )
+- ✅Ajouter animation sur element (register)
 - Ajouter des Images ??
 - ✅ Ajouter fleches de retour en arriere dasn 'login'
+- ✅ Ajouter mentions legales
