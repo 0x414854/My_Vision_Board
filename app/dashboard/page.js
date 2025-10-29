@@ -13,6 +13,7 @@ import ModalGoals from "@/components/modal/modalGoals";
 import WeeklyGoalsChart from "@/components/charts/weeklyCharts";
 import AllGoalsChart from "@/components/charts/allCharts";
 import Copyright from "@/components/footer/copyright";
+import Footer from "@/components/footer/footer";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -568,6 +569,7 @@ export default function DashboardPage() {
         )}
       </section>
       <Copyright />
+      {/* <Footer /> */}
     </section>
   );
 }
