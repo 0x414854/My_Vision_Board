@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+  /* background: var(--white); */
   background: var(--title-gradient);
   min-height: 100vh;
   gap: 40px;

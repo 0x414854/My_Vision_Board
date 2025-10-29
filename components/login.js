@@ -40,7 +40,12 @@ export default function Login() {
       <div className={styles.loginContainer}>
         <div className={styles.backHomeContainer}>
           <Link href="/">
-            <Image src={BackArrow} width={20} height={20} />
+            <Image
+              src={BackArrow}
+              width={20}
+              height={20}
+              alt="Flèche de retour en arrière à la page d'accueil"
+            />
             <p>Back Home</p>
           </Link>
         </div>

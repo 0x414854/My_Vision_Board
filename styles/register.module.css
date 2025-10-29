@@ -6,7 +6,7 @@
   background: var(--title-gradient);
   gap: 20px;
   background-size: 800% 800%;
-  animation: gradientAnimation 10s ease infinite;
+  /* animation: gradientAnimation 10s ease infinite; */
 }
 .mobileLogo {
   margin: 10px;
@@ -15,6 +15,49 @@
 }
 .desktopLogo {
   display: none;
+}
+.backHomeContainer {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  color: var(--white);
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  /* box-shadow: var(--bs-bottom); */
+  font-size: var(--fs-1);
+  margin: 0 auto 10px auto;
+  transition: all 0.3s ease;
+}
+.backHomeContainer a {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.backHomeContainer a:hover {
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+.backHomeContainer p {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.backHomeContainer p::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: var(--white);
+  bottom: 0;
+  left: 0;
+}
+.backHomeContainer a:hover p::after {
+  width: 100%;
+  transition: all 0.3s ease;
 }
 .formContainer {
   display: flex;
@@ -99,12 +142,13 @@
   align-items: center;
   text-align: center;
   padding: 20px;
-  background: var(--cta-color);
+  background: var(--white);
   min-height: 150px;
   font-size: var(--fs-1);
+  border: 1px solid var(--cta-color);
   border-radius: 20px;
   box-shadow: var(--bs-bottom);
-  color: var(--white);
+  color: var(--black);
 }
 .magicLinkInfo p {
   font-size: var(--fs-1);
@@ -112,6 +156,9 @@
 }
 
 @media (min-width: 574px) {
+  .backHomeContainer {
+    font-size: var(--fs-105);
+  }
   .form label {
     width: 70%;
     font-size: var(--fs-105);
@@ -145,6 +192,9 @@
     align-items: center;
     justify-content: center;
   }
+  .backHomeContainer {
+    font-size: var(--fs-11);
+  }
   .formContainer {
     flex-direction: row;
   }
@@ -160,7 +210,7 @@
     width: 60%;
   }
   .form label {
-    width: 70%;
+    width: 80%;
     font-size: var(--fs-11);
   }
   .form label input {
@@ -192,7 +242,7 @@
 
 @media (min-width: 820px) {
   .form label {
-    width: 50%;
+    width: 80%;
   }
   .form label input {
     width: 70%;
@@ -214,8 +264,14 @@
     justify-content: center;
     gap: 20px;
     box-shadow: var(--bs-bottom);
+    position: relative;
   }
-
+  .backHomeContainer {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    font-size: var(--fs-115);
+  }
   .formContainer {
     flex-direction: column;
     width: 80%;
@@ -223,8 +279,8 @@
     box-shadow: none;
   }
   .desktopLogo img {
-    width: 300px;
-    height: 80px;
+    /* width: 300px;
+    height: 80px; */
     border-radius: 20px;
   }
   .form {
@@ -232,7 +288,7 @@
     gap: 20px;
   }
   .form label {
-    width: 70%;
+    width: 80%;
     font-size: var(--fs-115);
   }
   .form label input {
@@ -240,7 +296,7 @@
     width: 100%;
   }
   .button {
-    width: 55%;
+    width: 85%;
     padding: 10px;
     font-size: var(--fs-115);
   }
@@ -248,7 +304,7 @@
     margin: 0;
     box-shadow: none;
     border-right: 1px solid black;
-    border-radius: 20px;
+    border-radius: 0;
     width: 100%;
   }
   .magicLinkInfo h2 {
@@ -273,6 +329,9 @@
     width: 75%;
     gap: 0;
   }
+  .backHomeContainer {
+    font-size: var(--fs-12);
+  }
   .formContainer {
     flex-direction: column;
     height: auto;
@@ -288,7 +347,7 @@
     font-size: var(--fs-12);
   }
   .button {
-    width: 50%;
+    width: 80%;
     font-size: var(--fs-12);
   }
 

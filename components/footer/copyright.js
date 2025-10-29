@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/styles/copyright.module.css";
 import Heart from "@/public/redHeart.svg";
 import Link from "next/link";
@@ -31,7 +32,11 @@ export default function Copyright() {
           height={16}
           alt="heart"
         /> by{" "}
-        <Link href="www.arthurbarraud.me" className={styles.link}>
+        <Link
+          href="https://www.arthurbarraud.me"
+          className={styles.link}
+          target="_blank"
+        >
           Arthur BARRAUD
         </Link>
       </motion.span>
